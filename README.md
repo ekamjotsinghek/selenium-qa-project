@@ -19,6 +19,7 @@ automated HTML reporting, and CI/CD integration via GitHub Actions.
 
 ## 📁 Project Structure
 
+````
 selenium-qa-project/
 ├── .github/
 │   └── workflows/
@@ -35,6 +36,7 @@ selenium-qa-project/
 ├── pytest.ini              # Pytest configuration and custom markers
 ├── requirements.txt        # Project dependencies
 └── README.md               # Project documentation
+````
 
 ## ⚙️ Installation
 
