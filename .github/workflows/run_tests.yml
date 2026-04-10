@@ -28,4 +28,4 @@ jobs:
           sudo apt-get install -y google-chrome-stable
 
       - name: Run tests
-        run: python -m pytest tests/test_google.py -v
+        run: python -m pytest tests/test_wiki.py -v
