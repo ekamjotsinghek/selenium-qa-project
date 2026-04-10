@@ -3,7 +3,8 @@
 A professional test automation suite built with Python and Selenium WebDriver,
 designed to validate core web functionality across multiple websites using
 industry-standard QA practices including Page Object Model (POM) structure,
-automated HTML reporting, and CI/CD integration via GitHub Actions.
+automated HTML reporting, CI/CD integration via GitHub Actions, screenshot
+capture on failure, and a detailed logging system.
 
 ## 🛠️ Tech Stack
 
@@ -30,9 +31,14 @@ selenium-qa-project/
 ├── tests/
 │   ├── test_google.py      # Google test cases (local only)
 │   └── test_wiki.py        # Wikipedia test cases (local + CI/CD)
+├── utils/
+│   ├── __init__.py         # Package initializer
+│   └── logger.py           # Logging utility
 ├── reports/
 │   └── report.html         # Auto-generated HTML test report
-├── conftest.py             # Browser setup and teardown
+├── screenshots/            # Auto-captured on test failure
+├── logs/                   # Auto-generated test run logs
+├── conftest.py             # Browser setup, teardown and screenshot capture
 ├── pytest.ini              # Pytest configuration and custom markers
 ├── requirements.txt        # Project dependencies
 └── README.md               # Project documentation
@@ -41,16 +47,36 @@ selenium-qa-project/
 ## ⚙️ Installation
 
 1. Clone the repository
+```
+git clone https://github.com/ekamjotsinghek/selenium-qa-project.git
+```
 2. Navigate into the project folder
+```
+cd selenium-qa-project
+```
 3. Install dependencies
+```
+pip install -r requirements.txt
+```
 
 ## ▶️ Running the Tests
 
 Run Wikipedia tests locally with HTML report:
+```
+python -m pytest tests/test_wiki.py -v --html=reports/report.html --self-contained-html
+```
 Run Google tests locally only:
+```
+python -m pytest tests/test_google.py -v --html=reports/report.html --self-contained-html
+```
 Run all local tests:
+```
+python -m pytest -v --html=reports/report.html --self-contained-html
+```
 
 The HTML report will open automatically in your browser after tests complete.
+Screenshots are saved to the `screenshots/` folder on any test failure.
+Logs are saved to the `logs/` folder after every test run.
 
 ## 🌐 Test Suites
 
@@ -85,6 +111,8 @@ The HTML report will open automatically in your browser after tests complete.
 - **Smart Waits** — Uses WebDriverWait to handle slow connections reliably
 - **Bot Detection Bypass** — Chrome configured to run without triggering CAPTCHA
 - **Auto HTML Reports** — Test report opens automatically after every run
+- **Screenshot on Failure** — Automatically captures browser screenshot when any test fails
+- **Logging System** — Records detailed test execution logs with timestamps to file and console
 - **CI/CD Pipeline** — Tests run automatically on every GitHub push via GitHub Actions
 - **Multi-site Coverage** — Tests across both Google and Wikipedia
 - **Clean Structure** — Industry standard folder structure for scalability
