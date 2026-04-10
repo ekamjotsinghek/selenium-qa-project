@@ -1,34 +1,40 @@
 # Selenium QA Automation Project
 
-A professional test automation suite built with Python and Selenium WebDriver, 
-designed to validate the core functionality of Google Search using industry-standard 
-QA practices including Page Object Model (POM) structure and automated HTML reporting.
+A professional test automation suite built with Python and Selenium WebDriver,
+designed to validate core web functionality across multiple websites using
+industry-standard QA practices including Page Object Model (POM) structure,
+automated HTML reporting, and CI/CD integration via GitHub Actions.
 
 ## 🛠️ Tech Stack
 
-| Tool                  | Purpose                     |
-|-----------------------|-----------------------------|
-| Python 3.14           | Programming language        |
-| Selenium WebDriver    | Browser automation          |
-| Pytest                | Test framework              |
-| WebDriver Manager     | Automatic driver management |
-| Pytest-HTML           | HTML report generation      |
-| Git & GitHub          | Version control             |
+| Tool | Purpose |
+|------|---------|
+| Python 3.14 | Programming language |
+| Selenium WebDriver | Browser automation |
+| Pytest | Test framework |
+| WebDriver Manager | Automatic driver management |
+| Pytest-HTML | HTML report generation |
+| GitHub Actions | CI/CD pipeline |
+| Git & GitHub | Version control |
 
 ## 📁 Project Structure
 
-```
 selenium-qa-project/
+├── .github/
+│   └── workflows/
+│       └── run_tests.yml   # CI/CD pipeline configuration
 ├── pages/
-│   └── google_page.py      # Page Object Model for Google homepage
+│   ├── google_page.py      # Page Object Model for Google homepage
+│   └── wiki_page.py        # Page Object Model for Wikipedia homepage
 ├── tests/
-│   └── test_google.py      # Test cases
+│   ├── test_google.py      # Google test cases (local only)
+│   └── test_wiki.py        # Wikipedia test cases (local + CI/CD)
 ├── reports/
 │   └── report.html         # Auto-generated HTML test report
 ├── conftest.py             # Browser setup and teardown
+├── pytest.ini              # Pytest configuration and custom markers
 ├── requirements.txt        # Project dependencies
 └── README.md               # Project documentation
-```
 
 ## ⚙️ Installation
 
@@ -38,10 +44,31 @@ selenium-qa-project/
 
 ## ▶️ Running the Tests
 
-Run all tests with HTML report: The HTML report will open automatically in your browser after tests complete.
+Run Wikipedia tests locally with HTML report:
+Run Google tests locally only:
+Run all local tests:
+
+The HTML report will open automatically in your browser after tests complete.
+
+## 🌐 Test Suites
+
+| Suite | Website | Environment |
+|-------|---------|-------------|
+| test_wiki.py | Wikipedia | Local + CI/CD |
+| test_google.py | Google | Local only (bot detection prevents cloud execution) |
 
 ## 🧪 Test Cases
 
+### Wikipedia Tests
+| Test Case | Description | Expected Result |
+|-----------|-------------|-----------------|
+| test_homepage_loads | Verifies Wikipedia homepage loads correctly | Page title contains "Wikipedia" |
+| test_search_bar_exists | Verifies search bar is visible on homepage | Search bar is displayed |
+| test_search_returns_article | Verifies searching returns a valid article | Article heading contains search query |
+| test_title_changes_after_search | Verifies page title updates after search | Title contains search query |
+| test_search_bar_accepts_input | Verifies search bar accepts typed input | Input matches typed text |
+
+### Google Tests (Local Only)
 | Test Case | Description | Expected Result |
 |-----------|-------------|-----------------|
 | test_homepage_loads | Verifies Google homepage loads correctly | Page title contains "Google" |
@@ -56,6 +83,8 @@ Run all tests with HTML report: The HTML report will open automatically in your 
 - **Smart Waits** — Uses WebDriverWait to handle slow connections reliably
 - **Bot Detection Bypass** — Chrome configured to run without triggering CAPTCHA
 - **Auto HTML Reports** — Test report opens automatically after every run
+- **CI/CD Pipeline** — Tests run automatically on every GitHub push via GitHub Actions
+- **Multi-site Coverage** — Tests across both Google and Wikipedia
 - **Clean Structure** — Industry standard folder structure for scalability
 
 ## 👤 Author
